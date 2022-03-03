@@ -90,7 +90,7 @@ class MyCard extends StatelessWidget {
 */
 
 //StatefulWidget Mutables - Puede cambiar su estado a lo largo del desarrollo y se renderiza en la aplicacion
-
+/*
 void main(){
   runApp(new MaterialApp(
     home: MyButton(),
@@ -145,4 +145,149 @@ class _MyButtonState extends State<MyButton>{
     );
   }
 }
+*/
 
+//Textfield
+/*
+void main(){
+  runApp(new MaterialApp(
+    home: MyTextField(),
+  ));
+}
+
+class MyTextField extends StatefulWidget{
+  @override
+  _MyTextFieldState createState() => new _MyTextFieldState();
+}
+
+class _MyTextFieldState extends State<MyTextField>{
+String inputValue = " ";
+final TextEditingController controller = new TextEditingController();
+
+void onSubmitted(String value){
+  print(value);
+  setState(() {
+    inputValue = inputValue + "\n" + value;
+    controller.text = " ";
+  });
+}
+
+    @override
+    Widget build(BuildContext context){
+      return new Scaffold(
+        appBar: new AppBar(
+          title: new Text("EditText widget"),
+          backgroundColor: Colors.orange,
+        ),
+        body: new Container(
+          child: new Center(
+           child: new Column(
+              children: <Widget>[
+                new TextField(
+                  decoration: new InputDecoration(hintText: "Ingese el texto aquí"),
+                  onSubmitted: (String value) {onSubmitted(value);},
+                  controller: controller,
+                ),
+                new Text(inputValue, style: new TextStyle(fontSize: 30.0)),
+                new Padding(padding: new EdgeInsets.all(10.0)),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+}*/
+
+//AlertDialog
+/*
+void main(){
+  runApp(new MaterialApp(
+    home: MyDialog(),
+  ));
+}
+class MyDialog extends StatefulWidget{
+  @override
+  _MyDialogState createState() => new _MyDialogState();
+}
+
+enum DialogAction{
+  yes,
+  no
+}
+
+class _MyDialogState extends State<MyDialog>{
+  String _inputValue = " ";
+
+  void _alertResult(DialogAction action){
+    print("Your selection is $action");
+  }
+
+  void _showAlert(String value){
+    AlertDialog dialog = new AlertDialog(
+      content: new Text(value),
+      actions: <Widget> [
+        new FlatButton(onPressed:() {_alertResult(DialogAction.yes);}, child: new Text("si"),),
+        new FlatButton(onPressed:() {_alertResult(DialogAction.no);}, child: new Text("no"),),
+      ],
+    );
+    showDialog(context: context, builder:(context)=> dialog);
+  }
+
+  void _onChanged(String value){
+    setState(() {
+      _inputValue = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Demo Alert Dialog"),
+      ),
+      body: new Container(
+        child: new Center(
+          child: new Column(
+            children: <Widget> [
+              new TextField(
+                decoration: new InputDecoration(
+                  hintText: "Insert your text"
+                ),
+                onChanged: (String valu) {_onChanged(valu);},
+              ),
+              new RaisedButton(
+                child: new Text("Show Alert"),
+                onPressed: () {_showAlert(_inputValue);},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+ */
+
+//Image
+void main(){
+  runApp(new MaterialApp(
+      home: Screen(),
+  ));
+}
+class Screen extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+   return new Scaffold(
+     appBar: new AppBar(
+       title:  new Text("Image"),
+     ),
+     body: new Center(
+       child: new Container(
+          width: 320,
+         height: 320,
+         color: Colors.orange,
+         ),
+       ),
+   );
+  }
+}
